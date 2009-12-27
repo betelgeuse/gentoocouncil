@@ -6,10 +6,6 @@
     <header class="content-header">
       <h1>Welcome to <app-name/></h1>
       <section class="welcome-message">
-        <h3>Congratulations! Your Hobo Rails App is up and running</h3>
-        <ul>
-          <li>To customise this page: edit app/views/front/index.dryml</li>
-        </ul>
     
         <% if User.count == 0 -%>
           <h3 style="margin-top: 20px;">There are no user accounts - please provide the details of the site administrator</h3>
@@ -17,7 +13,6 @@
             <signup-form/>
           </do>
         <% end -%>
-        
       
       </section>
     </header>

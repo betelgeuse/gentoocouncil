@@ -1,0 +1,35 @@
+<!-- AUTOMATICALLY GENERATED FILE - DO NOT EDIT -->
+
+<def tag="card" for="Question">
+  <card class="question" param="default" merge>
+    <header: param>
+      <h4 param="heading"><a><name/></a></h4>
+    </header:>
+    <body: param>
+      <a:creator param="creator-link"/>
+      <ht key="votes.collection.count" count="&this.votes.size">
+         <count:votes param/>
+      </ht>
+    </body:>
+  </card>
+</def>
+
+<def tag="card" for="User">
+  <card class="user" param="default" merge>
+    <header: param>
+      <h4 param="heading"><a><name/></a></h4>
+    </header:>
+  </card>
+</def>
+
+<def tag="card" for="Vote">
+  <card class="vote" param="default" merge>
+    <header: param>
+      <h4 param="heading"><a><name/></a></h4>
+    </header:>
+    <body: param>
+      <a:user param="creator-link"/>
+    </body:>
+  </card>
+</def>
+
