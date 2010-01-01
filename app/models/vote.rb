@@ -12,10 +12,12 @@ class Vote < ActiveRecord::Base
   belongs_to :question
   validates_presence_of :user, :question
   never_show :user
+  validates_uniqueness_of :user_id, :scope => :question_id
 
   # --- Permissions --- #
 
   def create_permitted?
+    return false if question.votes.find_by_user_id(user_id)
     acting_user.signed_up?
   end
 
