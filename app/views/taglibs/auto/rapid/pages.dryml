@@ -5,9 +5,132 @@
 <def tag="main-nav">
   <navigation class="main-nav" merge-attrs param="default">
     <nav-item href="#{base_url}/">Home</nav-item>
+    <nav-item with="&Agenda"><ht key="agendas.nav_item">Agendas</ht></nav-item>
     <nav-item with="&Question"><ht key="questions.nav_item">Questions</ht></nav-item>
   </navigation>
 </def>
+
+
+
+
+<!-- ====== Agenda Pages ====== -->
+
+<def tag="index-page" for="Agenda">
+  <page merge title="#{ht 'agendas.index.title', :default=>['Agendas'] }">
+    <body: class="index-page agenda" param/>
+
+    <content: param>
+      <header param="content-header">
+        <h2 param="heading">
+          <ht key="agendas.index.heading">
+            Agendas
+          </ht>
+        </h2>
+
+        <p param="count" if>
+          <ht key="agendas.collection.count" count="&this.size">
+            There <count prefix="are"/>
+          </ht>
+        </p>
+      </header>
+
+      <section param="content-body">
+        <a action="new" to="&model" param="new-link">
+          <ht key="agendas.actions.new">New Agenda</ht>
+        </a>
+
+        <page-nav param="top-page-nav"/>
+
+        <collection param/>
+
+        <page-nav param="bottom-page-nav"/>
+
+
+      </section>
+    </content:>
+  </page>
+</def>
+
+
+<def tag="new-page" for="Agenda">
+  <page merge title="#{ht 'agendas.new.title', :default=>[' New Agenda'] }">
+    <body: class="new-page agenda" param/>
+
+    <content: param>
+      <section param="content-header">
+        <h2 param="heading">
+          <ht key="agendas.new.heading">
+            New Agenda
+          </ht>
+        </h2>
+      </section>
+
+      <section param="content-body">
+        <form param>
+          <submit: label="#{ht 'agendas.actions.create', :default=>['Create Agenda']}"/>
+        </form>
+      </section>
+    </content:>
+  </page>
+</def>
+
+
+<def tag="show-page" for="Agenda">
+  <page merge title="#{ht 'agendas.show.title', :default=>['Agenda'] }">
+
+    <body: class="show-page agenda" param/>
+
+    <content: param>
+          <header param="content-header">
+            <h2 param="heading">
+              <ht key="agendas.show.heading" name="&this.respond_to?(:name) ? this.name : ''">
+                <name/>
+              </ht>
+            </h2>
+
+            <record-flags fields="" param/>
+
+            <a:owner param="creator-link"/>
+
+            <a action="edit" if="&can_edit?" param="edit-link">
+              <ht key="agendas.actions.edit" name="&this.respond_to?(:name) ? this.name : ''">
+                Edit Agenda
+              </ht>
+            </a>
+          </header>
+
+          <section param="content-body">
+            <view:description param="description"/>
+          </section>
+    </content:>
+
+  </page>
+</def>
+
+
+<def tag="edit-page" for="Agenda">
+  <page merge title="#{ht 'agendas.edit.title', :default=>['Edit Agenda'] }">
+
+    <body: class="edit-page agenda" param/>
+
+    <content:>
+      <section param="content-header">
+        <h2 param="heading">
+          <ht key="agendas.edit.heading" name="&this.respond_to?(:name) ? this.name : ''">
+            Edit <type-name/>
+          </ht>
+        </h2>
+        <delete-button label="#{ht 'agendas.actions.delete', :default=>['Remove This Agenda']}" param/>
+      </section>
+
+      <section param="content-body">
+        <form param/>
+      </section>
+    </content:>
+
+  </page>
+</def>
+
 
 
 

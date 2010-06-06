@@ -1,0 +1,21 @@
+agenda_one:
+  name: Go to the Zoo
+  description: Disneyland
+  start_at: <%= 15.days.from_now %>
+  end_at: <%= 16.days.from_now %>
+  location: www.google.cn
+  owner: council_member
+agenda_two:
+  name: hosting a party
+  description: HIT
+  start_at: <%= 15.days.from_now %>
+  end_at: <%= 16.days.from_now %>
+  location: www.hit.edu.cn
+  owner: council_member
+agenda_test_name:
+  name: agenda_test_name
+  description: agenda_test_description
+  start_at: <%= 15.days.from_now %>
+  end_at: <%= 16.days.from_now %>
+  location: www.hit.edu.cn
+  owner: council_member

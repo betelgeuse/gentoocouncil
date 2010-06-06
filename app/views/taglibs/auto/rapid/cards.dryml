@@ -1,5 +1,16 @@
 <!-- AUTOMATICALLY GENERATED FILE - DO NOT EDIT -->
 
+<def tag="card" for="Agenda">
+  <card class="agenda" param="default" merge>
+    <header: param>
+      <h4 param="heading"><a><name/></a></h4>
+    </header:>
+    <body: param>
+      <a:owner param="creator-link"/>
+    </body:>
+  </card>
+</def>
+
 <def tag="card" for="Question">
   <card class="question" param="default" merge>
     <header: param>
