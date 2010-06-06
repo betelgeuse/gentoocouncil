@@ -1,5 +1,28 @@
 <!-- AUTOMATICALLY GENERATED FILE - DO NOT EDIT -->
 
+<def tag="form" for="AgendaItem">
+  <form merge param="default">
+    <error-messages param/>
+    <field-list fields="name, description, approved, reason_of_disapproval, agenda, approved_by, owner" param/>
+    <div param="actions">
+      <submit label="#{ht 'agenda_items.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
+
+
+<def tag="approved-form" polymorphic/>
+<def tag="approved-form" for="AgendaItem">
+  <form lifecycle="approved" merge param="default">
+    <error-messages param/>
+    <input type="hidden" name="key" value="&this.lifecycle.provided_key" if="&this.lifecycle.provided_key"/>
+    <field-list fields="" param/>
+    <div param="actions">
+      <submit label="#{ht 'agenda_items.actions.approved', :default=>['Approved']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
+
 <def tag="form" for="Agenda">
   <form merge param="default">
     <error-messages param/>

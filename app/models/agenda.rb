@@ -11,6 +11,8 @@ class Agenda < ActiveRecord::Base
   end
 
 	belongs_to :owner, :class_name => 'User', :creator => true
+	has_many :agenda_items, :dependent => :destroy
+
 	validates_presence_of :owner
 
   # --- Permissions --- #

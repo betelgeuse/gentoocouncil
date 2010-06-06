@@ -1,0 +1,13 @@
+agenda_item_one:
+  name: agenda_item_unapproved
+  description: agenda item 1
+  agenda: agenda_one
+  owner: council_member
+  approved: <%= false %>
+
+agenda_item_two:
+  name: agenda_item_approved
+  description: agenda item 2
+  agenda: agenda_one
+  owner: council_member
+  approved: <%= true %>

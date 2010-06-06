@@ -10,3 +10,13 @@ Given /^I am logged in as a (.+)$/ do |user|
 	And 'I fill in "password" with "kktest3"'
 	And 'I press "Log in"'
 end
+
+Given /^(?:|I )am logged in$/ do
+	Given "I am logged in as a developer"
+end
+
+And /^(?:|I )am not a council member$/ do
+	if (@user.role.to_sym == :council_member)
+		Given "I am logged in as a developer"
+	end
+end

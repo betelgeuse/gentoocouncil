@@ -1,0 +1,17 @@
+<show-page>
+	<append-content-header:>
+	 <% if current_user.signed_up? and [:admin, :council_member].include?(current_user.role.to_sym) %>
+		 <% form_for :agenda_item, @agenda_item, :url => approve_agenda_item_path(@agenda_item.id) do |f| %>
+		 <% if @agenda_item.approved? %>
+			 <% button_hint = 'Disapprove' %>
+			 <%= f.text_area :reason_of_disapproval %>
+			 <br />
+		 <% else %>
+			 <% button_hint = 'Approve' %>
+		 <% end %>
+
+		 <%= f.submit button_hint, :class => 'button submit-button', :name => 'agenda_item[approved]', :id => 'agenda_item_approved' %>
+		 <% end %>
+	 <% end %>
+	</append-content-header:>
+</show-page>

@@ -7,6 +7,20 @@
     </header:>
     <body: param>
       <a:owner param="creator-link"/>
+      <ht key="agenda_items.collection.count" count="&this.agenda_items.size">
+         <count:agenda_items param/>
+      </ht>
+    </body:>
+  </card>
+</def>
+
+<def tag="card" for="AgendaItem">
+  <card class="agenda-item" param="default" merge>
+    <header: param>
+      <h4 param="heading"><a><name/></a></h4>
+    </header:>
+    <body: param>
+      <a:owner param="creator-link"/>
     </body:>
   </card>
 </def>

@@ -6,10 +6,158 @@
   <navigation class="main-nav" merge-attrs param="default">
     <nav-item href="#{base_url}/">Home</nav-item>
     <nav-item with="&Agenda"><ht key="agendas.nav_item">Agendas</ht></nav-item>
+    <nav-item with="&AgendaItem"><ht key="agenda_items.nav_item">Agenda Items</ht></nav-item>
     <nav-item with="&Question"><ht key="questions.nav_item">Questions</ht></nav-item>
   </navigation>
 </def>
 
+
+
+
+<!-- ====== AgendaItem Pages ====== -->
+
+<def tag="index-page" for="AgendaItem">
+  <page merge title="#{ht 'agenda_items.index.title', :default=>['Agenda Items'] }">
+    <body: class="index-page agenda-item" param/>
+
+    <content: param>
+      <header param="content-header">
+        <h2 param="heading">
+          <ht key="agenda_items.index.heading">
+            Agenda Items
+          </ht>
+        </h2>
+
+        <p param="count" if>
+          <ht key="agenda_items.collection.count" count="&this.size">
+            There <count prefix="are"/>
+          </ht>
+        </p>
+      </header>
+
+      <section param="content-body">
+        <a action="new" to="&model" param="new-link">
+          <ht key="agenda_items.actions.new">New Agenda Item</ht>
+        </a>
+
+        <page-nav param="top-page-nav"/>
+
+        <collection param/>
+
+        <page-nav param="bottom-page-nav"/>
+
+
+      </section>
+    </content:>
+  </page>
+</def>
+
+
+<def tag="new-page" for="AgendaItem">
+  <page merge title="#{ht 'agenda_items.new.title', :default=>[' New Agenda Item'] }">
+    <body: class="new-page agenda-item" param/>
+
+    <content: param>
+      <section param="content-header">
+        <h2 param="heading">
+          <ht key="agenda_items.new.heading">
+            New Agenda Item
+          </ht>
+        </h2>
+      </section>
+
+      <section param="content-body">
+        <form param>
+          <submit: label="#{ht 'agenda_items.actions.create', :default=>['Create Agenda Item']}"/>
+        </form>
+      </section>
+    </content:>
+  </page>
+</def>
+
+
+<def tag="show-page" for="AgendaItem">
+  <page merge title="#{ht 'agenda_items.show.title', :default=>['Agenda Item'] }">
+
+    <body: class="show-page agenda-item" param/>
+
+    <content: param>
+          <header param="content-header">
+            <a:agenda param="parent-link">&laquo; <ht key="agenda_items.actions.back" to="agenda"><name/></ht></a:agenda>
+            <h2 param="heading">
+              <ht key="agenda_items.show.heading" name="&this.respond_to?(:name) ? this.name : ''">
+                <name/>
+              </ht>
+            </h2>
+
+            <record-flags fields="approved" param/>
+
+            <a:owner param="creator-link"/>
+
+            <a action="edit" if="&can_edit?" param="edit-link">
+              <ht key="agenda_items.actions.edit" name="&this.respond_to?(:name) ? this.name : ''">
+                Edit Agenda Item
+              </ht>
+            </a>
+          </header>
+
+          <section param="content-body">
+            <view:description param="description"/>
+            <field-list fields="reason_of_disapproval, approved_by" param/>
+          </section>
+    </content:>
+
+  </page>
+</def>
+
+
+<def tag="edit-page" for="AgendaItem">
+  <page merge title="#{ht 'agenda_items.edit.title', :default=>['Edit Agenda Item'] }">
+
+    <body: class="edit-page agenda-item" param/>
+
+    <content:>
+      <section param="content-header">
+        <h2 param="heading">
+          <ht key="agenda_items.edit.heading" name="&this.respond_to?(:name) ? this.name : ''">
+            Edit <type-name/>
+          </ht>
+        </h2>
+        <delete-button label="#{ht 'agenda_items.actions.delete', :default=>['Remove This Agenda Item']}" param/>
+      </section>
+
+      <section param="content-body">
+        <form param/>
+      </section>
+    </content:>
+
+  </page>
+</def>
+
+
+
+<def tag="approved-page" polymorphic/>
+<def tag="approved-page" for="AgendaItem">
+  <page title="#{ht 'agenda_items.approved.title', :default=>['Approved']}" merge>
+
+    <body: class="lifecycle-transition-page approved-page" param/>
+
+    <content:>
+      <header param="content-header">
+        <h2 param="heading">
+          <ht key="agenda_items.approved.heading">
+            Approved
+          </ht>
+        </h2>
+      </header>
+
+      <section param="content-body">
+        <approved-form param="form"/>
+      </section>
+    </content:>
+
+  </page>
+</def>
 
 
 
@@ -101,6 +249,15 @@
 
           <section param="content-body">
             <view:description param="description"/>
+            <section param="collection-section">
+              <h3 param="collection-heading">
+                <ht key="agendas.collection.heading.other" >
+                  Agenda Items
+                </ht>
+              </h3>
+
+              <collection:agenda_items param/>
+            </section>
           </section>
     </content:>
 
