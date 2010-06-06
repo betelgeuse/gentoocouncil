@@ -7,6 +7,7 @@
     <nav-item href="#{base_url}/">Home</nav-item>
     <nav-item with="&Agenda"><ht key="agendas.nav_item">Agendas</ht></nav-item>
     <nav-item with="&AgendaItem"><ht key="agenda_items.nav_item">Agenda Items</ht></nav-item>
+    <nav-item with="&Glep"><ht key="gleps.nav_item">Gleps</ht></nav-item>
     <nav-item with="&Question"><ht key="questions.nav_item">Questions</ht></nav-item>
   </navigation>
 </def>
@@ -278,6 +279,129 @@
           </ht>
         </h2>
         <delete-button label="#{ht 'agendas.actions.delete', :default=>['Remove This Agenda']}" param/>
+      </section>
+
+      <section param="content-body">
+        <form param/>
+      </section>
+    </content:>
+
+  </page>
+</def>
+
+
+
+
+
+<!-- ====== Glep Pages ====== -->
+
+<def tag="index-page" for="Glep">
+  <page merge title="#{ht 'gleps.index.title', :default=>['Gleps'] }">
+    <body: class="index-page glep" param/>
+
+    <content: param>
+      <header param="content-header">
+        <h2 param="heading">
+          <ht key="gleps.index.heading">
+            Gleps
+          </ht>
+        </h2>
+
+        <p param="count" if>
+          <ht key="gleps.collection.count" count="&this.size">
+            There <count prefix="are"/>
+          </ht>
+        </p>
+      </header>
+
+      <section param="content-body">
+        <a action="new" to="&model" param="new-link">
+          <ht key="gleps.actions.new">New Glep</ht>
+        </a>
+
+        <page-nav param="top-page-nav"/>
+
+        <collection param/>
+
+        <page-nav param="bottom-page-nav"/>
+
+
+      </section>
+    </content:>
+  </page>
+</def>
+
+
+<def tag="new-page" for="Glep">
+  <page merge title="#{ht 'gleps.new.title', :default=>[' New Glep'] }">
+    <body: class="new-page glep" param/>
+
+    <content: param>
+      <section param="content-header">
+        <h2 param="heading">
+          <ht key="gleps.new.heading">
+            New Glep
+          </ht>
+        </h2>
+      </section>
+
+      <section param="content-body">
+        <form param>
+          <submit: label="#{ht 'gleps.actions.create', :default=>['Create Glep']}"/>
+        </form>
+      </section>
+    </content:>
+  </page>
+</def>
+
+
+<def tag="show-page" for="Glep">
+  <page merge title="#{ht 'gleps.show.title', :default=>['Glep'] }">
+
+    <body: class="show-page glep" param/>
+
+    <content: param>
+          <header param="content-header">
+            <h2 param="heading">
+              <ht key="gleps.show.heading" name="&this.respond_to?(:name) ? this.name : ''">
+                <name/>
+              </ht>
+            </h2>
+
+            <record-flags fields="" param/>
+
+            <a:owner param="creator-link"/>
+
+            <a action="edit" if="&can_edit?" param="edit-link">
+              <ht key="gleps.actions.edit" name="&this.respond_to?(:name) ? this.name : ''">
+                Edit Glep
+              </ht>
+            </a>
+          </header>
+
+          <section param="content-body">
+            <view:description param="description"/>
+            <field-list fields="status" param/>
+          </section>
+    </content:>
+
+  </page>
+</def>
+
+
+<def tag="edit-page" for="Glep">
+  <page merge title="#{ht 'gleps.edit.title', :default=>['Edit Glep'] }">
+
+    <body: class="edit-page glep" param/>
+
+    <content:>
+      <section param="content-header">
+        <h2 param="heading">
+          <ht key="gleps.edit.heading" name="&this.respond_to?(:name) ? this.name : ''">
+            Edit <type-name/>
+          </ht>
+        </h2>
+        <delete-button label="#{ht 'gleps.actions.delete', :default=>['Remove This Glep']}" param/>
       </section>
 
       <section param="content-body">

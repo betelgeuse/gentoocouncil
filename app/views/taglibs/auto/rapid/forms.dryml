@@ -35,6 +35,18 @@
 
 
 
+<def tag="form" for="Glep">
+  <form merge param="default">
+    <error-messages param/>
+    <field-list fields="name, description, status, owner" param/>
+    <div param="actions">
+      <submit label="#{ht 'gleps.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
+
+
+
 <def tag="form" for="Question">
   <form merge param="default">
     <error-messages param/>

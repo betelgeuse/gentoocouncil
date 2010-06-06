@@ -25,6 +25,17 @@
   </card>
 </def>
 
+<def tag="card" for="Glep">
+  <card class="glep" param="default" merge>
+    <header: param>
+      <h4 param="heading"><a><name/></a></h4>
+    </header:>
+    <body: param>
+      <a:owner param="creator-link"/>
+    </body:>
+  </card>
+</def>
+
 <def tag="card" for="Question">
   <card class="question" param="default" merge>
     <header: param>

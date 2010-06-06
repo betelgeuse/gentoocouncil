@@ -9,8 +9,11 @@ class User < ActiveRecord::Base
     timestamps
   end
 
-	has_many :votes, :foreign_key => 'owner_id',
-									:dependent => :destroy, :order => 'created_at DESC'
+	conditions = {:foreign_key => 'owner_id',
+								:dependent => :destroy, :order => 'created_at DESC'}
+	
+	has_many :votes, conditions
+	has_many :gleps, conditions
 
   # This gives admin rights to the first sign-up.
   # Just remove it if you don't want that

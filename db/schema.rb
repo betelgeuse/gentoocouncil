@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100606031333) do
+ActiveRecord::Schema.define(:version => 20100606080751) do
 
   create_table "agenda_items", :force => true do |t|
     t.string   "name"
@@ -39,6 +39,17 @@ ActiveRecord::Schema.define(:version => 20100606031333) do
   end
 
   add_index "agendas", ["owner_id"], :name => "index_agendas_on_owner_id"
+
+  create_table "gleps", :force => true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.string   "status",      :limit => 20, :default => "'--- :pending\n'"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "owner_id"
+  end
+
+  add_index "gleps", ["owner_id"], :name => "index_gleps_on_owner_id"
 
   create_table "questions", :force => true do |t|
     t.string   "name"
