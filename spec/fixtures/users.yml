@@ -1,4 +1,16 @@
 council_member:
- name: Council Member
- email_address: foobar@gentoo.org
- administrator: false
+  name: Council Member
+  email_address: foobar@gentoo.org
+  role: council_member
+admin:
+  name: Admin
+  email_address: admin@admin.com
+  role: admin
+guest:
+  name: Guest
+  email_address: guest@guest.com
+  role: guest
+developer:
+  name: Developer
+  email_address: developer@gentoo.org
+  role: developer

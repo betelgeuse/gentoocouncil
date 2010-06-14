@@ -5,13 +5,22 @@ class User < ActiveRecord::Base
   fields do
     name          :string, :required, :unique
     email_address :email_address, :login => true
-    administrator :boolean, :default => false
+		role					Role, :default => :guest, :limit => 20
     timestamps
   end
 
+	has_many :votes, :foreign_key => 'owner_id',
+									:dependent => :destroy, :order => 'created_at DESC'
+
   # This gives admin rights to the first sign-up.
   # Just remove it if you don't want that
-  before_create { |user| user.administrator = true if !Rails.env.test? && count == 0 }
+  before_create do |user|
+		if !Rails.env.test? && count == 0
+			user.role = :admin
+		else
+			user.role = :guest
+		end
+	end
 
   
   # --- Signup lifecycle --- #
@@ -21,7 +30,7 @@ class User < ActiveRecord::Base
     state :active, :default => true
 
     create :signup, :available_to => "Guest",
-           :params => [:name, :email_address, :password, :password_confirmation],
+           :params => [:name, :email_address, :password, :password_confirmation, :role],
            :become => :active
              
     transition :request_password_reset, { :active => :active }, :new_key => true do
@@ -55,5 +64,9 @@ class User < ActiveRecord::Base
   def view_permitted?(field)
     true
   end
+
+	def administrator?
+		role.to_sym == :admin
+	end
 
 end

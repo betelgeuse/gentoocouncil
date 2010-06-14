@@ -52,7 +52,7 @@
 
 
 <def tag="new-page" for="Question">
-  <page merge title="#{ht 'questions.new.title', :default=>['New Question'] }">
+  <page merge title="#{ht 'questions.new.title', :default=>[' New Question'] }">
     <body: class="new-page question" param/>
 
     <content: param>
@@ -186,7 +186,7 @@
 
 
 <def tag="new-page" for="User">
-  <page merge title="#{ht 'users.new.title', :default=>['New User'] }">
+  <page merge title="#{ht 'users.new.title', :default=>[' New User'] }">
     <body: class="new-page user" param/>
 
     <content: param>
@@ -221,7 +221,7 @@
               </ht>
             </h2>
 
-            <record-flags fields="administrator" param/>
+            <record-flags fields="" param/>
 
             <a action="edit" if="&can_edit?" param="edit-link">
               <ht key="users.actions.edit" name="&this.respond_to?(:name) ? this.name : ''">
@@ -231,7 +231,7 @@
           </header>
 
           <section param="content-body">
-            <field-list fields="email_address, state" param/>
+            <field-list fields="email_address, role, state" param/>
           </section>
     </content:>
 
@@ -349,7 +349,7 @@
 
 
 <def tag="new-page" for="Vote">
-  <page merge title="#{ht 'votes.new.title', :default=>['New Vote'] }">
+  <page merge title="#{ht 'votes.new.title', :default=>[' New Vote'] }">
     <body: class="new-page vote" param/>
 
     <content: param>
