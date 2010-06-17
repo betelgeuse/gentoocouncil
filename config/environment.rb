@@ -8,6 +8,7 @@ require File.join(File.dirname(__FILE__), 'boot')
 
 Rails::Initializer.run do |config|
   config.gem 'hobo'
+	config.gem 'delayed_job'
 
   # Settings in config/environments/* take precedence over those specified here.
   # Application configuration should go into files in config/initializers
@@ -40,4 +41,19 @@ Rails::Initializer.run do |config|
   # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
   # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}')]
   # config.i18n.default_locale = :de
+	#
+	# email notification
+
+	# tls must be enabled on my dev machine
+	config.action_mailer.delivery_method = :smtp
+	config.action_mailer.smtp_settings = {
+		:tls => true,
+		:enable_starttls_auto => true,
+		:address => "smtp.gmail.com",
+		:port => 587,
+		:domain => "www.gmail.com",
+		:user_name => "AppNotifier@gmail.com",
+		:password => "stupidnotifier",
+		:authentication => :plain
+	}
 end

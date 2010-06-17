@@ -12,3 +12,8 @@ require 'tasks/rails'
 require 'hobo/tasks/rails'
 
 task :default => [:spec, :cucumber]
+begin
+	require 'delayed/tasks'
+rescue LoadError
+	STDERR.puts 'Run rake gems:install to install delayed_job'
+end
