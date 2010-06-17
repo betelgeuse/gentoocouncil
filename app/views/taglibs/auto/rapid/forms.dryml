@@ -35,6 +35,18 @@
 
 
 
+<def tag="form" for="Doodle">
+  <form merge param="default">
+    <error-messages param/>
+    <field-list fields="name, description, url, admin_url, agenda, owner" param/>
+    <div param="actions">
+      <submit label="#{ht 'doodles.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
+
+
+
 <def tag="form" for="Glep">
   <form merge param="default">
     <error-messages param/>

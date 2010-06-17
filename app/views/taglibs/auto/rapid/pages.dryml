@@ -7,6 +7,7 @@
     <nav-item href="#{base_url}/">Home</nav-item>
     <nav-item with="&Agenda"><ht key="agendas.nav_item">Agendas</ht></nav-item>
     <nav-item with="&AgendaItem"><ht key="agenda_items.nav_item">Agenda Items</ht></nav-item>
+    <nav-item with="&Doodle"><ht key="doodles.nav_item">Doodles</ht></nav-item>
     <nav-item with="&Glep"><ht key="gleps.nav_item">Gleps</ht></nav-item>
     <nav-item with="&Question"><ht key="questions.nav_item">Questions</ht></nav-item>
   </navigation>
@@ -279,6 +280,129 @@
           </ht>
         </h2>
         <delete-button label="#{ht 'agendas.actions.delete', :default=>['Remove This Agenda']}" param/>
+      </section>
+
+      <section param="content-body">
+        <form param/>
+      </section>
+    </content:>
+
+  </page>
+</def>
+
+
+
+
+
+<!-- ====== Doodle Pages ====== -->
+
+<def tag="index-page" for="Doodle">
+  <page merge title="#{ht 'doodles.index.title', :default=>['Doodles'] }">
+    <body: class="index-page doodle" param/>
+
+    <content: param>
+      <header param="content-header">
+        <h2 param="heading">
+          <ht key="doodles.index.heading">
+            Doodles
+          </ht>
+        </h2>
+
+        <p param="count" if>
+          <ht key="doodles.collection.count" count="&this.size">
+            There <count prefix="are"/>
+          </ht>
+        </p>
+      </header>
+
+      <section param="content-body">
+        <a action="new" to="&model" param="new-link">
+          <ht key="doodles.actions.new">New Doodle</ht>
+        </a>
+
+        <page-nav param="top-page-nav"/>
+
+        <collection param/>
+
+        <page-nav param="bottom-page-nav"/>
+
+
+      </section>
+    </content:>
+  </page>
+</def>
+
+
+<def tag="new-page" for="Doodle">
+  <page merge title="#{ht 'doodles.new.title', :default=>[' New Doodle'] }">
+    <body: class="new-page doodle" param/>
+
+    <content: param>
+      <section param="content-header">
+        <h2 param="heading">
+          <ht key="doodles.new.heading">
+            New Doodle
+          </ht>
+        </h2>
+      </section>
+
+      <section param="content-body">
+        <form param>
+          <submit: label="#{ht 'doodles.actions.create', :default=>['Create Doodle']}"/>
+        </form>
+      </section>
+    </content:>
+  </page>
+</def>
+
+
+<def tag="show-page" for="Doodle">
+  <page merge title="#{ht 'doodles.show.title', :default=>['Doodle'] }">
+
+    <body: class="show-page doodle" param/>
+
+    <content: param>
+          <header param="content-header">
+            <h2 param="heading">
+              <ht key="doodles.show.heading" name="&this.respond_to?(:name) ? this.name : ''">
+                <name/>
+              </ht>
+            </h2>
+
+            <record-flags fields="" param/>
+
+            <a:owner param="creator-link"/>
+
+            <a action="edit" if="&can_edit?" param="edit-link">
+              <ht key="doodles.actions.edit" name="&this.respond_to?(:name) ? this.name : ''">
+                Edit Doodle
+              </ht>
+            </a>
+          </header>
+
+          <section param="content-body">
+            <view:description param="description"/>
+            <field-list fields="url, admin_url, agenda" param/>
+          </section>
+    </content:>
+
+  </page>
+</def>
+
+
+<def tag="edit-page" for="Doodle">
+  <page merge title="#{ht 'doodles.edit.title', :default=>['Edit Doodle'] }">
+
+    <body: class="edit-page doodle" param/>
+
+    <content:>
+      <section param="content-header">
+        <h2 param="heading">
+          <ht key="doodles.edit.heading" name="&this.respond_to?(:name) ? this.name : ''">
+            Edit <type-name/>
+          </ht>
+        </h2>
+        <delete-button label="#{ht 'doodles.actions.delete', :default=>['Remove This Doodle']}" param/>
       </section>
 
       <section param="content-body">

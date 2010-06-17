@@ -1,4 +1,5 @@
 ActionController::Routing::Routes.draw do |map|
+	map.resources :doodles, :member => {:doodle_create => :get}
 
   map.site_search  'search', :controller => 'front', :action => 'search'
   map.root :controller => 'front', :action => 'index'

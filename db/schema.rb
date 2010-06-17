@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100606080751) do
+ActiveRecord::Schema.define(:version => 20100606084756) do
 
   create_table "agenda_items", :force => true do |t|
     t.string   "name"
@@ -39,6 +39,20 @@ ActiveRecord::Schema.define(:version => 20100606080751) do
   end
 
   add_index "agendas", ["owner_id"], :name => "index_agendas_on_owner_id"
+
+  create_table "doodles", :force => true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.string   "url"
+    t.string   "admin_url"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "owner_id"
+    t.integer  "agenda_id"
+  end
+
+  add_index "doodles", ["agenda_id"], :name => "index_doodles_on_agenda_id"
+  add_index "doodles", ["owner_id"], :name => "index_doodles_on_owner_id"
 
   create_table "gleps", :force => true do |t|
     t.string   "name"

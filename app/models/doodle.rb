@@ -1,29 +1,28 @@
 require 'permission'
 
-class Agenda < ActiveRecord::Base
+class Doodle < ActiveRecord::Base
 
   hobo_model # Don't put anything above this
 
   fields do
     name        :string, :required
     description :text
+    url         :string
+    admin_url   :string
     timestamps
   end
 
 	belongs_to :owner, :class_name => 'User', :creator => true
-	has_many :agenda_items, :dependent => :destroy
-	has_one :doodle
-
-	validates_presence_of :owner
+	belongs_to :agenda
 
   # --- Permissions --- #
-	never_show :owner
 
 	multi_permission(:create, :update, :destroy) do
-		acting_user.signed_up? and [:admin, :council_member].include?(acting_user.role.to_sym)
+		(acting_user.signed_up?) and
+			([:admin, :council_member].include?(acting_user.role.to_sym))
 	end
 
-  def view_permitted?(field)
-    true
-  end
+	def view_permitted?(field)
+		true
+	end
 end
