@@ -1,0 +1,7 @@
+Dear user,
+
+Agenda item (<%=h @agenda_item.name %>) has been added to agenda (<%=h @agenda_item.agenda.name %>). Please be informed.
+
+URL: <%= url_for :host => @host, :controller => 'agenda_items', :action => 'show', :id => @agenda_item %>
+
+The <%= @app_name %> team.

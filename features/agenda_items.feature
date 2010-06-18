@@ -27,3 +27,12 @@ Feature: Propose Agenda Items
 
 		When I visit agenda item "agenda_item_unapproved"
 		Then I should see "not allowed"
+
+	Scenario: Council member gets notification
+		Given I am logged in as a council member
+		When I visit agenda item "agenda_item_unapproved"
+		And I follow "Edit Agenda Item"
+		And I select "agenda_test_name" from "agenda_item[agenda_id]"
+		And I press "Save"
+		Then I should see "were saved"
+		And I should receive a delayed email
