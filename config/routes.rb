@@ -18,6 +18,7 @@ ActionController::Routing::Routes.draw do |map|
 
   # Sample resource route (maps HTTP verbs to controller actions automatically):
   #   map.resources :products
+	map.resources :email_notifications
 
 	map.resources :agenda_items, :member => {:approve => :post}
 

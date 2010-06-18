@@ -102,6 +102,7 @@ ActiveRecord::Schema.define(:version => 20100618142500) do
     t.string   "state",                                   :default => "active"
     t.datetime "key_timestamp"
     t.string   "role",                      :limit => 20, :default => "'"
+    t.integer  "notify_in_advance",                       :default => 0
   end
 
   add_index "users", ["state"], :name => "index_users_on_state"

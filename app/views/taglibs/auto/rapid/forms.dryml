@@ -74,7 +74,7 @@
 <def tag="form" for="User">
   <form merge param="default">
     <error-messages param/>
-    <field-list fields="name, email_address, role, state" param/>
+    <field-list fields="name, email_address, role, notify_in_advance, state" param/>
     <div param="actions">
       <submit label="#{ht 'users.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
     </div>

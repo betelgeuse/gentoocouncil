@@ -20,3 +20,14 @@ And /^(?:|I )am not a council member$/ do
 		Given "I am logged in as a developer"
 	end
 end
+
+Then /^I should be able to configure how early to receive email notification$/ do
+	When "I configured to receive email notification 2 weeks in advance"
+end
+
+When /^I configured to receive email notification 2 weeks in advance$/ do
+	visit edit_user_path(@user)
+	When %Q{I fill in "user_notify_in_advance" with "#{2 * 7 * 24}"}
+	And 'I press "Save"'
+	Then 'I should see "were saved"'
+end

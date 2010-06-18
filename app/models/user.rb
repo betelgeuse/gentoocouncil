@@ -6,6 +6,7 @@ class User < ActiveRecord::Base
     name          :string, :required, :unique
     email_address :email_address, :login => true
 		role					Role, :default => :guest, :limit => 20
+		notify_in_advance		:integer, :default => 0  # 0 hour: no notification please
     timestamps
   end
 
@@ -25,7 +26,6 @@ class User < ActiveRecord::Base
 		end
 	end
 
-  
   # --- Signup lifecycle --- #
 
   lifecycle do
@@ -55,7 +55,7 @@ class User < ActiveRecord::Base
   def update_permitted?
     acting_user.administrator? || 
       (acting_user == self && only_changed?(:email_address, :crypted_password,
-                                            :current_password, :password, :password_confirmation))
+                                            :current_password, :password, :password_confirmation, :notify_in_advance))
     # Note: crypted_password has attr_protected so although it is permitted to change, it cannot be changed
     # directly from a form submission.
   end

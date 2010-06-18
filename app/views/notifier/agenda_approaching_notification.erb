@@ -1,0 +1,7 @@
+Dear user,
+
+The meeting <%= @agenda.name %> is scheduled at <%= @agenda.start_at %>. Please don't forget about it.
+
+URL: <%= url_for :host => @host, :controller => 'agendas', :action => 'show', :id => @agenda %>
+
+The <%= @app_name %> team.

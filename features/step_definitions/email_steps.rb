@@ -180,3 +180,8 @@ end
 Then /^save and open all raw emails$/ do
   EmailSpec::EmailViewer::save_and_open_all_raw_emails
 end
+
+# test email with delayed_job
+Then /^I should receive a delayed email$/ do
+	Delayed::Job.last.name.should contain('agenda_item')
+end

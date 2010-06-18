@@ -759,7 +759,7 @@
           </header>
 
           <section param="content-body">
-            <field-list fields="email_address, role, state" param/>
+            <field-list fields="email_address, role, notify_in_advance, state" param/>
           </section>
     </content:>
 
