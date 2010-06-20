@@ -15,6 +15,8 @@ class User < ActiveRecord::Base
 	
 	has_many :votes, conditions
 	has_many :gleps, conditions
+	has_many :attendances, :dependent => :destroy
+	has_many :users, :through => :attendances
 
   # This gives admin rights to the first sign-up.
   # Just remove it if you don't want that

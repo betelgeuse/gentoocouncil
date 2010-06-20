@@ -21,6 +21,7 @@ ActionController::Routing::Routes.draw do |map|
 	map.resources :email_notifications
 
 	map.resources :agenda_items, :member => {:approve => :post}
+	map.resources :agendas, :member => {:attend => :post}
 
   # Sample resource route with options:
   #   map.resources :products, :member => { :short => :get, :toggle => :post }, :collection => { :sold => :get }

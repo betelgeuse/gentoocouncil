@@ -1,0 +1,18 @@
+<show-page>
+	<append-content-header:>
+	<% if (current_user.signed_up? and (not @agenda.users.include?(current_user))) %>
+						<%= button_to 'Attend', "/agendas/#{@agenda.id}/attend", :class => 'button', :title => 'Take attendance' %>
+	<% end %>
+	</append-content-header:>
+	<content-body:>
+            <field-list fields="description"/>
+						<section class="collection-section">
+							<h3>Agenda Items</h3>
+							<collection:agenda_items/>
+
+							<% if can_create?(@agenda.agenda_items) %>
+								<%= link_to 'New Agenda Item', new_agenda_item_path(:agenda_id => @agenda.id) %>
+							<% end %>
+						</section>
+	</content-body:>
+</show-page>
