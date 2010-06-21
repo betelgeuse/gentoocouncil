@@ -2,6 +2,10 @@ council_member:
   name: Council Member
   email_address: foobar@gentoo.org
   role: council_member
+council_member_two:
+  name: Council Member Two
+  email_address: foobar@gentoo.org
+  role: council_member
 admin:
   name: Admin
   email_address: admin@admin.com

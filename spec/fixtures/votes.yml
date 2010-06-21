@@ -1,0 +1,10 @@
+vote_one:
+  support: false
+  reasoning: no idea
+  question: question
+  owner: council_member_two
+vote_two:
+  support: true
+  reasoning: yes idea
+  question: question
+  owner: council_member_two

@@ -8,16 +8,16 @@ class Vote < ActiveRecord::Base
     timestamps
   end
 
-  belongs_to :user, :creator => true
+  belongs_to :owner, :class_name => 'User', :creator => true
   belongs_to :question
-  validates_presence_of :user, :question
-  never_show :user
-  validates_uniqueness_of :user_id, :scope => :question_id
+  validates_presence_of :owner, :question
+  never_show :owner
+  validates_uniqueness_of :owner_id, :scope => :question_id
 
   # --- Permissions --- #
 
   def create_permitted?
-    return false if question.votes.find_by_user_id(user_id)
+    return false if question.votes.find_by_owner_id(owner_id)
     acting_user.signed_up?
   end
 
@@ -31,7 +31,12 @@ class Vote < ActiveRecord::Base
   end
 
   def view_permitted?(field)
-    true
+		# TODO: must have a mechanism to mark whether voting is finished or not
+		if question.votes.count < User.find(:all, :conditions => {:role => 'council_member'}).count
+			return false
+		else
+			return true
+		end
   end
 
 end

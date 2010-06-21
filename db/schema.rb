@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100619002912) do
+ActiveRecord::Schema.define(:version => 20100621090948) do
 
   create_table "agenda_items", :force => true do |t|
     t.string   "name"
@@ -122,11 +122,11 @@ ActiveRecord::Schema.define(:version => 20100619002912) do
     t.text     "reasoning"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "user_id"
+    t.integer  "owner_id"
     t.integer  "question_id"
   end
 
+  add_index "votes", ["owner_id"], :name => "index_votes_on_owner_id"
   add_index "votes", ["question_id"], :name => "index_votes_on_question_id"
-  add_index "votes", ["user_id"], :name => "index_votes_on_user_id"
 
 end
