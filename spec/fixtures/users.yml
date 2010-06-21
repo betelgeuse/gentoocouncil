@@ -1,4 +1,4 @@
-councilmember:
+council_member:
  name: Council Member
  email_address: foobar@gentoo.org
  administrator: false
