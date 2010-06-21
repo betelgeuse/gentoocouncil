@@ -1,1 +1,9 @@
 hobo
+rails
+cucumber
+cucumber-rails
+rspec
+rspec-rails
+spork
+tlsmail
+email_spec
