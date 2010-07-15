@@ -7,3 +7,17 @@
 <set-theme name="clean"/>
 
 <def tag="app-name">Gentoo Council Webapp</def>
+
+<extend tag="field-list">
+  <old-field-list merge>
+    <label: param>
+      <%=
+      if scope.in_form && can_edit?
+        label_tag(param_name_for_this,this_field_name)
+      else
+        this_field_name
+      end
+      %>
+    </label:>
+  </old-field-list>
+</extend>
